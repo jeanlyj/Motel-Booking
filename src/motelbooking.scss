@@ -2,14 +2,132 @@
 
 @include mat-core();
 
-$motel-booking-primary: mat-palette($mat-teal, 200);
-$motel-booking-accent:  mat-palette($mat-teal, 50);
+///////Theming-color////////
+
+$mb-primary: (
+    50 : #f6fbfb,
+    100 : #e8f5f4,
+    200 : #d9efed,
+    300 : #c9e9e6,
+    400 : #bee4e0,
+    500 : #b2dfdb,
+    600 : #abdbd7,
+    700 : #a2d7d2,
+    800 : #99d2cd,
+    900 : #8acac4,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #f6fffe,
+    A700 : #dcfffc,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+  )
+);
+
+$mb-accent: (
+    50 : #fffdf9,
+    100 : #fffbf0,
+    200 : #fff9e6,
+    300 : #fff6db,
+    400 : #fff4d4,
+    500 : #fff2cc,
+    600 : #fff0c7,
+    700 : #ffeec0,
+    800 : #ffecb9,
+    900 : #ffe8ad,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+$motel-booking-primary: mat-palette($mb-primary, 700,300,900);
+$motel-booking-accent:  mat-palette($mb-accent, 500,300,700);
 
 $motel-booking-warn:    mat-palette($mat-red);
 
 $motel-booking: mat-light-theme($motel-booking-primary, $motel-booking-accent, $motel-booking-warn);
 
+@import './app/navigation/navtabs/navtabs.components-theme.scss';
+
 @include angular-material-theme($motel-booking);
+
+// navtabs component scss file.
+@include navtab-component-theme($motel-booking);
+
 .navtabs-container {
-    background-color: mat-color($motel-booking-accent);
+    background-color: mat-color($motel-booking-primary,500);
+}
+
+///////// Typography //////////
+
+$mb-typography: mat-typography-config(
+  $font-family:   'Rubik, sans-serif',
+  $display-4:     mat-typography-level(112px, 112px, 300),
+  $display-3:     mat-typography-level(56px, 56px, 400),
+  $display-2:     mat-typography-level(45px, 48px, 400),
+  $display-1:     mat-typography-level(34px, 40px, 400),
+  $headline:      mat-typography-level(97.54px, 32px, 400),
+  $title:         mat-typography-level(61px, 0px, 500),
+  $subheading-2:  mat-typography-level(48.77px, 0.25px, 400),
+  $subheading-1:  mat-typography-level(34.54px, 0.25px, 400),
+  $body-2:        mat-typography-level(14.22px, 0.25px, 500),
+  $body-1:        mat-typography-level(16.26px, 0.5px, 400),
+  $caption:       mat-typography-level(12.19px, 1.25px, 400),
+  $button:        mat-typography-level(14.22px, 1.25px, 500),
+  // Line-height must be unit-less fraction of the font-size.
+  $input:         mat-typography-level(inherit, 1.125, 400)
+) ;
+
+// Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
+@include mat-base-typography($mb-typography);
+
+// Override typography for a specific Angular Material components.
+@include mat-checkbox-typography($mb-typography);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($mb-typography);
+
+
+@include mat-core($mb-typography);
+
+
+// All our style will be here
+.mat-list-option:hover,
+.mat-list-option.mat-list-item-focus,
+.mat-nav-list .mat-list-item:hover,
+.mat-nav-list .mat-list-item-focus {
+    background-color: mat-color($mb-primary,300);
+    color: mat-color($mb-primary,900)
 }
